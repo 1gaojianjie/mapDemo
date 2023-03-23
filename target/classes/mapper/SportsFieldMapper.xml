@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.SportsFieldMapper">
+    <select id="querySportsFieldInfo" resultType="com.gcc.gccmap.model.dto.SportsFieldDTO">
+        select sports_field_id,sports_field_name,sports_field_floor,sports_field_usertype from sports_field
+        where `left` = #{left} and top = #{top}
+    </select>
+
+    <update id="updateSportsFieldInfo" parameterType="com.gcc.gccmap.model.entity.SportsField">
+        update sports_field set sports_field_name = #{sportsFieldName},sports_field_floor = #{sportsFieldFloor},sports_field_usertype = #{sportsFieldUsertype}
+        <where>
+            <if test="left != null and top != null">
+                and `left` = #{left} and top = #{top}
+            </if>
+
+            <if test="sportsFieldId != null">
+                or sports_field_id = #{sportsFieldId}
+            </if>
+
+        </where>
+    </update>
+</mapper>

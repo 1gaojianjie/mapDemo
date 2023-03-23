@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.ClassroomMapper">
+    <select id="queryClassroomByBuildingId" resultType="com.gcc.gccmap.model.dto.ClassroomDTO">
+        select class_id,teaching_building_id,class_name,class_floor,class_floorid from classroom
+        where teaching_building_id = #{teachingBuildingId} and class_name is not null
+    </select>
+
+    <update id="updateClassByBuildingIdAndClassId" parameterType="com.gcc.gccmap.model.dto.ClassroomDTO">
+        update classroom set class_name = #{className},class_floor = #{classFloor},class_floorid = #{classFloorid}
+        where teaching_building_id = #{teachingBuildingId} and class_id = #{classId}
+    </update>
+
+    <insert id="insertClassroom" parameterType="com.gcc.gccmap.model.dto.ClassroomDTO">
+        insert into classroom values (#{classId},#{teachingBuildingId},#{className},#{classFloor},#{classFloorid})
+    </insert>
+
+    <delete id="deleteClassroom" parameterType="com.gcc.gccmap.model.vo.ClassroomDel">
+        delete from classroom where teaching_building_id = #{teachingBuildingId} and class_id = #{classId}
+    </delete>
+
+</mapper>

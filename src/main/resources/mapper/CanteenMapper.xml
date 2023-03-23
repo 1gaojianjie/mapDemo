@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.CanteenMapper">
+
+<!--    分步查询-->
+    <resultMap id="canteenMap" type="com.gcc.gccmap.model.dto.CanteenInfoDTO">
+        <collection property="shops"
+                    select="com.gcc.gccmap.mapper.ShopMapper.queryShopsByCanteenId"
+                    column="canteen_id"/>
+    </resultMap>
+
+    <select id="queryCanteenInfo" resultMap="canteenMap">
+        select canteen_id,canteen_name from canteen where `left` = #{left} and top = #{top}
+    </select>
+
+    <select id="queryCanteen" resultType="com.gcc.gccmap.model.dto.CanteenDTO">
+        select canteen_id,canteen_name from canteen where `left` = #{left} and top = #{top}
+    </select>
+
+    <update id="updateCanteenInfo" parameterType="com.gcc.gccmap.model.dto.CanteenDTO">
+        update canteen set canteen_name = #{canteenName} where canteen_id = #{canteenId}
+    </update>
+
+</mapper>

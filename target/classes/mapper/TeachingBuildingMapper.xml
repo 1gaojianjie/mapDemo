@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.TeachingBuildingMapper">
+
+<!--    分步查询-->
+    <resultMap id="buildingInfoMap" type="com.gcc.gccmap.model.dto.TeachingBuildingInfoDTO">
+        <collection property="classrooms"
+                    select="com.gcc.gccmap.mapper.ClassroomMapper.queryClassroomByBuildingId"
+                    column="teaching_building_id"/>
+    </resultMap>
+
+    <select id="queryTeachingBuilding" resultType="com.gcc.gccmap.model.dto.TeachingBuildingDTO">
+        select teaching_building_id,teaching_building_name,teaching_building_height from teaching_building
+        where `left` = #{left} and top = #{top}
+    </select>
+
+    <select id="queryTeachingBuildingInfo" resultMap="buildingInfoMap">
+        select teaching_building_id,teaching_building_name,teaching_building_height from teaching_building
+        where `left` = #{left} and top = #{top}
+    </select>
+
+    <update id="updateBuildingInfo" parameterType="com.gcc.gccmap.model.dto.TeachingBuildingDTO">
+        update teaching_building set teaching_building_name = #{teachingBuildingName},teaching_building_height = #{teachingBuildingHeight}
+        where teaching_building_id = #{teachingBuildingId}
+    </update>
+</mapper>

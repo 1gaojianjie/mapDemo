@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.gcc.gccmap.GccmapApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.903 s - in com.gcc.gccmap.GccmapApplicationTests

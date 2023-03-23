@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.ShopMapper">
+
+    <select id="queryShopsByCanteenId" resultType="com.gcc.gccmap.model.dto.ShopDTO">
+        select * from shop where canteen_id = #{canteenId}
+    </select>
+
+    <update id="updateShopByCanteenIdAndShopId" parameterType="com.gcc.gccmap.model.dto.ShopDTO">
+        update shop set shop_name = #{shopName} where canteen_id = #{canteenId} and shop_id = #{shopId}
+    </update>
+
+    <insert id="insertShop" parameterType="com.gcc.gccmap.model.entity.Shop">
+        insert into shop values (#{shopId},#{canteenId},#{shopName},#{left},#{top})
+    </insert>
+
+    <delete id="deleteShop" parameterType="com.gcc.gccmap.model.vo.ShopDel">
+        delete from shop where canteen_id = #{canteenId} and shop_id = #{shopId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.DormitoryBuildingMapper">
+    <select id="queryDormitoryBuilding" resultType="com.gcc.gccmap.model.dto.DormitoryBuildingDTO">
+        select dormitory_building_name,dormitory_building_height,dormitory_building_type from dormitory_building
+        where `left` = #{left} and top = #{top}
+    </select>
+
+    <update id="updateDormitoryInfo" parameterType="com.gcc.gccmap.model.dto.DormitoryBuildingDTO">
+        update dormitory_building set dormitory_building_name = #{dormitoryBuildingName},dormitory_building_height = #{dormitoryBuildingHeight},dormitory_building_type = #{dormitoryBuildingType}
+        where dormitory_building_id = #{dormitoryBuildingId}
+    </update>
+</mapper>

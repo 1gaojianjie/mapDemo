@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcc.gccmap.mapper.UserIdentityMapper">
+    <update id="updateUserIdentity" parameterType="com.gcc.gccmap.model.vo.ShowUserInfo">
+        update user_identity set user_sex = #{userSex}, user_realname = #{userRealname},
+        user_school = #{userSchool}, user_college = #{userCollege},user_specialty = #{userSpecialty},
+        user_student_id = #{userStudentId}, user_class = #{userClass}
+        where user_id = #{userId}
+    </update>
+</mapper>
