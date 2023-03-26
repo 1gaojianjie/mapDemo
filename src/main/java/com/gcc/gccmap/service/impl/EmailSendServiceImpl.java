@@ -2,9 +2,8 @@ package com.gcc.gccmap.service.impl;
 
 import com.gcc.gccmap.enums.ResponseStatus;
 import com.gcc.gccmap.service.EmailSendService;
-import com.gcc.gccmap.util.EmailSendCodeUtil;
+import com.gcc.gccmap.common.EmailSendCodeUtil;
 import com.gcc.gccmap.util.ResponseResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

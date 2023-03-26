@@ -1,4 +1,4 @@
-package com.gcc.gccmap.util;
+package com.gcc.gccmap.common;
 
 import com.gcc.gccmap.config.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
