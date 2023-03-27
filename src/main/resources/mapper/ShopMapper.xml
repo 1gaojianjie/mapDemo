@@ -11,7 +11,7 @@
     </update>
 
     <insert id="insertShop" parameterType="com.gcc.gccmap.model.entity.Shop">
-        insert into shop values (#{shopId},#{canteenId},#{shopName},#{left},#{top})
+        insert into shop(canteen_id,shop_name) values (#{canteenId},#{shopName})
     </insert>
 
     <delete id="deleteShop" parameterType="com.gcc.gccmap.model.vo.ShopDel">

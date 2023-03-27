@@ -18,9 +18,7 @@ public class ClassroomDTO implements Serializable {
     /**
      * 教室id
      */
-    @NotNull(message = "教室id不能为空")
-    @Min(value = 1, message = "教室id不符合规范")
-    @Max(value = 1000, message = "教室id不符合规范")
+
     private Integer classId;
 
     /**

@@ -20,9 +20,6 @@ public class ShopDTO implements Serializable {
     /**
      * 店铺id
      */
-    @NotNull(message = "店铺id不能为空")
-    @Min(value = 1, message = "店铺id不符合规范")
-    @Max(value = 500, message = "店铺id不符合规范")
     private Integer shopId;
 
     /**

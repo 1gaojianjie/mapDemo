@@ -12,7 +12,7 @@
     </update>
 
     <insert id="insertClassroom" parameterType="com.gcc.gccmap.model.dto.ClassroomDTO">
-        insert into classroom values (#{classId},#{teachingBuildingId},#{className},#{classFloor},#{classFloorid})
+        insert into classroom(teaching_building_id,class_name,class_floor,class_floorid) values (#{teachingBuildingId},#{className},#{classFloor},#{classFloorid})
     </insert>
 
     <delete id="deleteClassroom" parameterType="com.gcc.gccmap.model.vo.ClassroomDel">
