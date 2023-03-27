@@ -7,9 +7,7 @@ import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -22,14 +20,14 @@ public class DormitoryBuildingController {
 
     //通过坐标查询公寓信息
     @ApiOperation(value = "通过坐标查询公寓信息")
-    @PostMapping("/queryDormitoryBuilding")
+    @GetMapping("/queryDormitoryBuilding")
     public ResponseResult queryDormitoryBuilding(@Valid @RequestBody LocationInfo locationInfo){
         return dormitoryBuildingService.queryDormitoryBuilding(locationInfo);
     }
 
     //通过公寓id修改公寓信息
     @ApiOperation(value = "通过公寓id修改公寓信息")
-    @PostMapping("/updateDormitoryInfo")
+    @PutMapping("/updateDormitoryInfo")
     public ResponseResult updateDormitoryInfo(@Valid @RequestBody DormitoryBuildingDTO dormitoryBuildingDTO){
         return dormitoryBuildingService.updateDormitoryInfo(dormitoryBuildingDTO);
     }

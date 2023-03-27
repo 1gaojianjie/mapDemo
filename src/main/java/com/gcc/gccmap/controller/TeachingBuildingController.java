@@ -10,9 +10,7 @@ import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -28,7 +26,7 @@ public class TeachingBuildingController {
 
     //通过教学楼id和课室id更新课室数据
     @ApiOperation(value = "通过教学楼id和课室id更新课室数据")
-    @PostMapping("/updateClassByBuildingIdAndClassId")
+    @PutMapping("/updateClassByBuildingIdAndClassId")
     public ResponseResult updateClassByBuildingIdAndClassId(@Valid @RequestBody ClassroomDTO classroomDTO){
         return classroomService.updateClassByBuildingIdAndClassId(classroomDTO);
     }
@@ -42,28 +40,28 @@ public class TeachingBuildingController {
 
     //通过教学楼id和课室id删除课室
     @ApiOperation(value = "通过教学楼id和课室id删除课室")
-    @PostMapping("/deleteClassroom")
+    @DeleteMapping("/deleteClassroom")
     public ResponseResult deleteClassroom(@Valid @RequestBody ClassroomDel classroom){
         return classroomService.deleteClassroom(classroom);
     }
 
     //通过坐标查询教学楼信息
     @ApiOperation(value = "通过坐标查询教学楼信息")
-    @PostMapping("/queryTeachingBuilding")
+    @GetMapping("/queryTeachingBuilding")
     public ResponseResult queryTeachingBuilding(@Valid @RequestBody LocationInfo locationInfo){
         return teachingBuildingService.queryTeachingBuilding(locationInfo);
     }
 
     //通过坐标查询教学楼所有课室
     @ApiOperation(value = "通过坐标查询教学楼所有课室")
-    @PostMapping("/queryTeachingBuildingInfo")
+    @GetMapping("/queryTeachingBuildingInfo")
     public ResponseResult queryTeachingBuildingInfo(@Valid @RequestBody LocationInfo locationInfo){
         return teachingBuildingService.queryTeachingBuildingInfo(locationInfo);
     }
 
     //通过教学楼id修改教学楼信息
     @ApiOperation(value = "通过教学楼id修改教学楼信息")
-    @PostMapping("/updateBuildingInfo")
+    @PutMapping("/updateBuildingInfo")
     public ResponseResult updateBuildingInfo(@Valid @RequestBody TeachingBuildingDTO teachingBuilding){
         return teachingBuildingService.updateBuildingInfo(teachingBuilding);
     }

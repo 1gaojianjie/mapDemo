@@ -9,9 +9,8 @@ import com.gcc.gccmap.service.ShopService;
 import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -27,21 +26,21 @@ public class CanteenController {
 
     //查询饭堂所有的店铺
     @ApiOperation(value = "查询饭堂所有的店铺")
-    @PostMapping("/queryCanteenInfo")
+    @GetMapping("/queryCanteenInfo")
     public ResponseResult queryCanteenInfo(@Valid @RequestBody LocationInfo locationInfo){
         return canteenService.queryCanteenInfo(locationInfo);
     }
 
     //通过坐标查询饭堂信息
     @ApiOperation("通过坐标查询饭堂信息")
-    @PostMapping("/queryCanteen")
+    @GetMapping("/queryCanteen")
     public ResponseResult queryCanteen(@Valid @RequestBody LocationInfo locationInfo){
         return canteenService.queryCanteen(locationInfo);
     }
 
     //通过饭堂id和商铺id更新商铺数据
     @ApiOperation(value = "通过饭堂id和商铺id以及数据更新商铺数据")
-    @PostMapping("/updateShopByCanteenIdAndShopId")
+    @PutMapping("/updateShopByCanteenIdAndShopId")
     public ResponseResult updateShopByCanteenIdAndShopId(@Valid @RequestBody ShopDTO shop){
         return shopService.updateShopByCanteenIdAndShopId(shop);
     }
@@ -55,14 +54,14 @@ public class CanteenController {
 
     //通过饭堂id和商铺id删除店铺
     @ApiOperation(value = "通过饭堂id和商铺id删除店铺")
-    @PostMapping("/deleteShop")
+    @DeleteMapping("/deleteShop")
     public ResponseResult deleteShop(@Valid @RequestBody ShopDel shop){
         return shopService.deleteShop(shop);
     }
 
     //通过饭堂id修改饭堂信息
     @ApiOperation(value = "通过饭堂id修改饭堂信息")
-    @PostMapping("/updateCanteenInfo")
+    @PutMapping("/updateCanteenInfo")
     public ResponseResult updateCanteenInfo(@Valid @RequestBody CanteenDTO canteenDTO){
         return canteenService.updateCanteenInfo(canteenDTO);
     }

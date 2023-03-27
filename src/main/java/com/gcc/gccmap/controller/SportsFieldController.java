@@ -7,9 +7,7 @@ import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -22,14 +20,14 @@ public class SportsFieldController {
 
     //通过坐标查询体育场所信息
     @ApiOperation(value = "通过坐标查询体育场所信息")
-    @PostMapping("/querySportsFieldInfo")
+    @GetMapping("/querySportsFieldInfo")
     public ResponseResult querySportsFieldInfo(@Valid @RequestBody LocationInfo locationInfo){
         return sportsFieldService.querySportsFieldInfo(locationInfo);
     }
 
     //通过坐标或id更新体育场所信息
     @ApiOperation(value = "通过坐标或id更新体育场所信息")
-    @PostMapping("/updateSportsFieldInfo")
+    @PutMapping("/updateSportsFieldInfo")
     public ResponseResult updateSportsFieldInfo(@Valid @RequestBody SportsField sportsField){
         return sportsFieldService.updateSportsFieldInfo(sportsField);
     }
