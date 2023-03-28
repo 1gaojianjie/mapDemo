@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Objects;
@@ -20,7 +22,7 @@ import java.util.Objects;
  */
 @Component
 public class LogInterceptor implements HandlerInterceptor {
-    @Autowired
+    @Resource
     private RedisCache redisCache;
 
     @Override
