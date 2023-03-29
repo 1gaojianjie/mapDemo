@@ -2,10 +2,10 @@ package com.gcc.gccmap.controller;
 
 import com.gcc.gccmap.model.dto.CanteenDTO;
 import com.gcc.gccmap.model.dto.ShopDTO;
-import com.gcc.gccmap.model.vo.LocationInfo;
 import com.gcc.gccmap.model.vo.ShopDel;
 import com.gcc.gccmap.service.CanteenService;
 import com.gcc.gccmap.service.ShopService;
+import com.gcc.gccmap.util.CheckParamUtil;
 import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,14 +28,14 @@ public class CanteenController {
     @ApiOperation(value = "查询饭堂所有的店铺")
     @GetMapping ("/queryCanteenInfo")
     public ResponseResult queryCanteenInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return canteenService.queryCanteenInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return canteenService.queryCanteenInfo(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过坐标查询饭堂信息
     @ApiOperation("通过坐标查询饭堂信息")
     @GetMapping("/queryCanteen")
     public ResponseResult queryCanteen(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return canteenService.queryCanteen(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return canteenService.queryCanteen(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过饭堂id和商铺id更新商铺数据

@@ -3,6 +3,7 @@ package com.gcc.gccmap.controller;
 import com.gcc.gccmap.model.entity.SportsField;
 import com.gcc.gccmap.model.vo.LocationInfo;
 import com.gcc.gccmap.service.SportsFieldService;
+import com.gcc.gccmap.util.CheckParamUtil;
 import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,7 +24,7 @@ public class SportsFieldController {
     @ApiOperation(value = "通过坐标查询体育场所信息")
     @GetMapping("/querySportsFieldInfo")
     public ResponseResult querySportsFieldInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return sportsFieldService.querySportsFieldInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return sportsFieldService.querySportsFieldInfo(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过坐标或id更新体育场所信息

@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
 import javax.validation.ConstraintViolationException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -91,5 +90,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BuildingNotExistException.class)
     public ResponseResult error(BuildingNotExistException ex){
         return new ResponseResult(ResponseStatus.FAIL.getCode(), ex.getMessage());
+    }
+
+    @ExceptionHandler(ParameterExceptions.class)
+    public ResponseResult error(ParameterExceptions ex){
+        return new ResponseResult(ResponseStatus.PARM_ERROR.getCode(), ResponseStatus.PARM_ERROR.getMessage());
     }
 }

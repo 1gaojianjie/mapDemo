@@ -6,6 +6,7 @@ import com.gcc.gccmap.model.vo.ClassroomDel;
 import com.gcc.gccmap.model.vo.LocationInfo;
 import com.gcc.gccmap.service.ClassroomService;
 import com.gcc.gccmap.service.TeachingBuildingService;
+import com.gcc.gccmap.util.CheckParamUtil;
 import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,14 +51,14 @@ public class TeachingBuildingController {
     @ApiOperation(value = "通过坐标查询教学楼信息")
     @GetMapping("/queryTeachingBuilding")
     public ResponseResult queryTeachingBuilding(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return teachingBuildingService.queryTeachingBuilding(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return teachingBuildingService.queryTeachingBuilding(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过坐标查询教学楼所有课室
     @ApiOperation(value = "通过坐标查询教学楼所有课室")
     @GetMapping("/queryTeachingBuildingInfo")
     public ResponseResult queryTeachingBuildingInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return teachingBuildingService.queryTeachingBuildingInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return teachingBuildingService.queryTeachingBuildingInfo(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过教学楼id修改教学楼信息

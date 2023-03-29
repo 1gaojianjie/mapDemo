@@ -3,6 +3,7 @@ package com.gcc.gccmap.controller;
 import com.gcc.gccmap.model.dto.DormitoryBuildingDTO;
 import com.gcc.gccmap.model.vo.LocationInfo;
 import com.gcc.gccmap.service.DormitoryBuildingService;
+import com.gcc.gccmap.util.CheckParamUtil;
 import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -23,7 +24,7 @@ public class DormitoryBuildingController {
     @ApiOperation(value = "通过坐标查询公寓信息")
     @GetMapping("/queryDormitoryBuilding")
     public ResponseResult queryDormitoryBuilding(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
-        return dormitoryBuildingService.queryDormitoryBuilding(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
+        return dormitoryBuildingService.queryDormitoryBuilding(CheckParamUtil.checkLocation(left,top));
     }
 
     //通过公寓id修改公寓信息
