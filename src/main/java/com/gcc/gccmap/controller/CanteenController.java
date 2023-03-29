@@ -10,9 +10,9 @@ import com.gcc.gccmap.util.ResponseResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 
 @RestController
@@ -26,16 +26,16 @@ public class CanteenController {
 
     //查询饭堂所有的店铺
     @ApiOperation(value = "查询饭堂所有的店铺")
-    @GetMapping("/queryCanteenInfo")
-    public ResponseResult queryCanteenInfo(@Valid @RequestBody LocationInfo locationInfo){
-        return canteenService.queryCanteenInfo(locationInfo);
+    @GetMapping ("/queryCanteenInfo")
+    public ResponseResult queryCanteenInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
+        return canteenService.queryCanteenInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
     }
 
     //通过坐标查询饭堂信息
     @ApiOperation("通过坐标查询饭堂信息")
     @GetMapping("/queryCanteen")
-    public ResponseResult queryCanteen(@Valid @RequestBody LocationInfo locationInfo){
-        return canteenService.queryCanteen(locationInfo);
+    public ResponseResult queryCanteen(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
+        return canteenService.queryCanteen(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
     }
 
     //通过饭堂id和商铺id更新商铺数据

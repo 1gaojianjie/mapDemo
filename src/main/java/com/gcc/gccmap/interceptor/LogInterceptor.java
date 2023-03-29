@@ -27,6 +27,13 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)throws Exception {
+
+        //放行OPTIONS请求
+        String method = request.getMethod();
+        if ("OPTIONS".equals(method)) {
+            return true;
+        }
+
         String token = request.getHeader("token");
         //如果token为空则抛出异常
         if (!StringUtils.hasText(token)) {

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @Api(value = "体育场所控制层", tags = { "体育场所访问接口" })
@@ -21,13 +22,13 @@ public class SportsFieldController {
     //通过坐标查询体育场所信息
     @ApiOperation(value = "通过坐标查询体育场所信息")
     @GetMapping("/querySportsFieldInfo")
-    public ResponseResult querySportsFieldInfo(@Valid @RequestBody LocationInfo locationInfo){
-        return sportsFieldService.querySportsFieldInfo(locationInfo);
+    public ResponseResult querySportsFieldInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
+        return sportsFieldService.querySportsFieldInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
     }
 
     //通过坐标或id更新体育场所信息
     @ApiOperation(value = "通过坐标或id更新体育场所信息")
-    @PutMapping("/updateSportsFieldInfo")
+    @PostMapping("/updateSportsFieldInfo")
     public ResponseResult updateSportsFieldInfo(@Valid @RequestBody SportsField sportsField){
         return sportsFieldService.updateSportsFieldInfo(sportsField);
     }

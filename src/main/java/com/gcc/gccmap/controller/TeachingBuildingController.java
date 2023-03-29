@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RestController
 @Api(value = "教学楼控制层", tags = { "教学楼访问接口" })
@@ -48,15 +49,15 @@ public class TeachingBuildingController {
     //通过坐标查询教学楼信息
     @ApiOperation(value = "通过坐标查询教学楼信息")
     @GetMapping("/queryTeachingBuilding")
-    public ResponseResult queryTeachingBuilding(@Valid @RequestBody LocationInfo locationInfo){
-        return teachingBuildingService.queryTeachingBuilding(locationInfo);
+    public ResponseResult queryTeachingBuilding(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
+        return teachingBuildingService.queryTeachingBuilding(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
     }
 
     //通过坐标查询教学楼所有课室
     @ApiOperation(value = "通过坐标查询教学楼所有课室")
     @GetMapping("/queryTeachingBuildingInfo")
-    public ResponseResult queryTeachingBuildingInfo(@Valid @RequestBody LocationInfo locationInfo){
-        return teachingBuildingService.queryTeachingBuildingInfo(locationInfo);
+    public ResponseResult queryTeachingBuildingInfo(@RequestParam @NotNull String left, @RequestParam @NotNull String top){
+        return teachingBuildingService.queryTeachingBuildingInfo(new LocationInfo(Integer.valueOf(left),Integer.valueOf(top)));
     }
 
     //通过教学楼id修改教学楼信息
